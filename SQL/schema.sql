@@ -1,0 +1,36 @@
+CREATE TABLE users
+(
+    id BIGINT AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    PRIMARY KEY(id)
+);
+
+CREATE TABLE post
+(
+    id BIGINT AUTO_INCREMENT,
+    author BIGINT NOT NULL, -- user_id
+    title VARCHAR(255) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    view VARCHAR(255) NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(author) REFERENCES users(id)
+);
+
+CREATE TABLE comment
+(
+    id BIGINT AUTO_INCREMENT,
+    author BIGINT NOT NULL, -- user_id
+    content VARCHAR(255) NOT NULL,
+    post_id BIGINT NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(author) REFERENCES users(id),
+    FOREIGN KEY(post_id) REFERENCES post(id)
+);
+
+
