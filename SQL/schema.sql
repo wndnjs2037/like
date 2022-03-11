@@ -69,3 +69,30 @@ create table hash_tag (
     FOREIGN KEY(author) REFERENCES users(id),
     FOREIGN KEY(post_id) REFERENCES post(id)
 );
+
+-- 팔로우
+CREATE TABLE follow(
+	id bigint auto_increment NOT NULL PRIMARY KEY,
+	user_id BIGINT NOT NULL,
+	other_id BIGINT NOT NULL,
+	FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+	FOREIGN KEY(other_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- 북마크
+CREATE TABLE bookmark(
+	bookmark_id BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	user_id BIGINT NOT NULL,
+	article_id BIGINT NOT NULL,
+	FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+	FOREIGN KEY(article_id) REFERENCES post(id) ON DELETE CASCADE
+);
+
+-- 좋아요
+CREATE TABLE likes(
+	id BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	user_id BIGINT NOT NULL,
+	article_id BIGINT NOT NULL,
+	FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+	FOREIGN KEY(article_id) REFERENCES post(id) ON DELETE CASCADE
+);
