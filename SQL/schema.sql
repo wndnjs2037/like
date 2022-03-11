@@ -51,7 +51,7 @@ CREATE TABLE social_feed
 CREATE TABLE friend_tag 
 (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    tag_name BIGINT NOT NULL,
+    tag_name VARCHAR(255) NOT NULL,
     user_id BIGINT NOT NULL, -- users table (id)
     post_id BIGINT NOT NULL, -- post table 
     PRIMARY KEY(id),
