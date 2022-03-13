@@ -1,3 +1,4 @@
+-- 사용자
 CREATE TABLE users
 (
     id BIGINT AUTO_INCREMENT,
@@ -6,21 +7,29 @@ CREATE TABLE users
     password VARCHAR(255) NOT NULL,
     createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
+    profile VARCHAR(255) NOT NULL,
+    following_count BIGINT NOT NULL,
+    follwer_count BIGINT NOT NULL,
     PRIMARY KEY(id)
 );
 
+-- 글
 CREATE TABLE post
 (
     id BIGINT AUTO_INCREMENT,
     author BIGINT NOT NULL, -- user_id
     title VARCHAR(255) NOT NULL,
     content VARCHAR(255) NOT NULL,
-    view VARCHAR(255) NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    count_liked BIGINT NOT NULL,
+    count_revogel BIGINT NOT NULL,
+    count_comment BIGINT NOT NULL,
+    revogel_post_id BIGINT,
     PRIMARY KEY(id),
     FOREIGN KEY(author) REFERENCES users(id)
 );
 
+-- 댓글
 CREATE TABLE comment
 (
     id BIGINT AUTO_INCREMENT,
@@ -28,6 +37,8 @@ CREATE TABLE comment
     content VARCHAR(255) NOT NULL,
     post_id BIGINT NOT NULL,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    count_liked BIGINT NOT NULL,
+    is_visible BOOLEAN DEFAULT TRUE,
     PRIMARY KEY(id),
     FOREIGN KEY(author) REFERENCES users(id),
     FOREIGN KEY(post_id) REFERENCES post(id)
