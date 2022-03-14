@@ -72,12 +72,12 @@ CREATE TABLE likes(
 	FOREIGN KEY(article_id) REFERENCES post(id) ON DELETE CASCADE
 );
 
--- 소셜피드 테이블 
+-- 소셜피드
 CREATE TABLE social_feed 
 (
     id BIGINT NOT NULL AUTO_INCREMENT,
     author BIGINT NOT NULL, -- users table (user_id)
-    createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    createat TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     post_id BIGINT NOT NULL, -- post table 
     follow_id BIGINT NOT NULL, -- follow table 
     PRIMARY KEY(id),
@@ -86,7 +86,8 @@ CREATE TABLE social_feed
     FOREIGN KEY(follow_id) REFERENCES follow(id)
 );
 
--- 친구태그 테이블
+
+-- 친구태그
 CREATE TABLE friend_tag 
 (
     id BIGINT NOT NULL AUTO_INCREMENT,
@@ -98,13 +99,23 @@ CREATE TABLE friend_tag
     FOREIGN KEY(post_id) REFERENCES post(id)
 );
 
--- 해시태그 테이블
+-- 해시태그
 create table hash_tag (
     id BIGINT not null AUTO_INCREMENT,
     tag_content VARCHAR(255) NOT NULL, 
-    author BIGINT NOT NULL, -- users table (id)
     post_id BIGINT NOT NULL, -- post table
+    comment_id BIGINT NOT NULL, -- comment table
     PRIMARY KEY(id),
-    FOREIGN KEY(author) REFERENCES users(id),
-    FOREIGN KEY(post_id) REFERENCES post(id)
+    FOREIGN KEY(comment_id) REFERENCES comment(id)
+);
+
+-- 해시태그-글 매핑 테이블
+CREATE TABLE tag_post
+(
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  post_id BIGINT NOT NULL, -- post table (id)
+  hashtag_id BIGINT NOT NULL, -- hash_tag table (id)
+  PRIMARY KEY(id),
+  FOREIGN KEY(post_id) REFERENCES post(id),
+  FOREIGN KEY(hashtag_id) REFERENCES hash_tag(id)
 );
