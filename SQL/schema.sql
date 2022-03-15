@@ -1,13 +1,13 @@
 -- 사용자
 CREATE TABLE users
 (
-    id BIGINT AUTO_INCREMENT,
+    id BIGINT not null AUTO_INCREMENT,
     email VARCHAR(255) UNIQUE NOT NULL,
     name VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
-    profile VARCHAR(255) NOT NULL,
+    profile_message VARCHAR(255) NOT NULL,
     following_count BIGINT NOT NULL,
     follwer_count BIGINT NOT NULL,
     PRIMARY KEY(id)
@@ -20,10 +20,10 @@ CREATE TABLE post
     author BIGINT NOT NULL, -- user_id
     title VARCHAR(255) NOT NULL,
     content VARCHAR(255) NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    count_liked BIGINT NOT NULL,
-    count_revogel BIGINT NOT NULL,
-    count_comment BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    count_liked BIGINT NOT NULL DEFAULT 0,
+    count_revogel BIGINT NOT NULL DEFAULT 0,
+    count_comment BIGINT NOT NULL DEFAULT 0,
     revogel_post_id BIGINT,
     PRIMARY KEY(id),
     FOREIGN KEY(author) REFERENCES users(id)
@@ -36,8 +36,8 @@ CREATE TABLE comment
     author BIGINT NOT NULL, -- user_id
     content VARCHAR(255) NOT NULL,
     post_id BIGINT NOT NULL,
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    count_liked BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    count_liked BIGINT NOT NULL DEFAULT 0,
     is_visible BOOLEAN DEFAULT TRUE,
     PRIMARY KEY(id),
     FOREIGN KEY(author) REFERENCES users(id),
@@ -46,7 +46,8 @@ CREATE TABLE comment
 
 
 -- 팔로우
-CREATE TABLE follow(
+CREATE TABLE follow
+(
 	id bigint auto_increment NOT NULL PRIMARY KEY,
 	user_id BIGINT NOT NULL,
 	other_id BIGINT NOT NULL,
@@ -77,7 +78,7 @@ CREATE TABLE social_feed
 (
     id BIGINT NOT NULL AUTO_INCREMENT,
     author BIGINT NOT NULL, -- users table (user_id)
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     post_id BIGINT NOT NULL, -- post table 
     follow_id BIGINT NOT NULL, -- follow table 
     PRIMARY KEY(id),
@@ -118,4 +119,15 @@ CREATE TABLE tag_post
   PRIMARY KEY(id),
   FOREIGN KEY(post_id) REFERENCES post(id),
   FOREIGN KEY(hashtag_id) REFERENCES hash_tag(id)
+);
+
+CREATE TABLE images
+(
+	id BIGINT NOT NULL AUTO_INCREMENT,
+	img_path VARCHAR(260) NOT NULL,
+	post_id BIGINT NOT NULL,
+	user_id BIGINT NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY(post_id) REFERENCES post(id),
+	FOREIGN KEY(user_id) REFERENCES users(id)
 );
