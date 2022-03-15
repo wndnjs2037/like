@@ -5,7 +5,7 @@ CREATE TABLE users
     email VARCHAR(255) UNIQUE NOT NULL,
     name VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     profile VARCHAR(255) NOT NULL,
     following_count BIGINT NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE post
     author BIGINT NOT NULL, -- user_id
     title VARCHAR(255) NOT NULL,
     content VARCHAR(255) NOT NULL,
-    createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     count_liked BIGINT NOT NULL,
     count_revogel BIGINT NOT NULL,
     count_comment BIGINT NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE social_feed
 (
     id BIGINT NOT NULL AUTO_INCREMENT,
     author BIGINT NOT NULL, -- users table (user_id)
-    createat TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     post_id BIGINT NOT NULL, -- post table 
     follow_id BIGINT NOT NULL, -- follow table 
     PRIMARY KEY(id),
