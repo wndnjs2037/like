@@ -7,14 +7,14 @@ import lombok.Setter;
 @Setter
 public class HashTag {
     Long id;
-    Long tag_name;
-    Long user_id;
+    String tag_content;
     Long post_id;
+    Long comment_id;
 
-    public HashTag(Long id, Long tag_name, Long user_id, Long post_id) {
+    public HashTag(Long id, String tag_content, Long post_id, Long comment_id) {
         this.id = id;
-        this.tag_name = tag_name;
-        this.user_id = user_id;
+        this.tag_content = tag_content;
         this.post_id = post_id;
+        this.comment_id = comment_id;
     }
 }

@@ -5,5 +5,10 @@
 <mapper namespace="com.codepresso.team2app.mapper.HashTagMapper">
     <insert id="saveHashTag">
         insert into hash_tag(tag_content, post_id, comment_id)
+        values (#{HashTag.tag_content}, #{HashTag.post_id}, #{HashTag.comment_id});
     </insert>
+
+    <select id="findHashTag" resultType="com.codepresso.team2app.vo.HashTag">
+        select * from hash_tag;
+    </select>
 </mapper>

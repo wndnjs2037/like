@@ -1,8 +1,10 @@
 package com.codepresso.team2app.controller;
 
+import com.codepresso.team2app.controller.dto.HashTagRequestDto;
 import com.codepresso.team2app.controller.dto.PostRequestDto;
 import com.codepresso.team2app.controller.dto.PostResponseDto;
 import com.codepresso.team2app.service.PostService;
+import com.codepresso.team2app.vo.HashTag;
 import com.codepresso.team2app.vo.Post;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +24,13 @@ public class PostController {
     @PostMapping("/post")
     public String createPost(@RequestBody @Validated PostRequestDto postRequestDto) {
         Post post = postRequestDto.getPost();
-        postService.savePost(post);
+
+        System.out.println(post.getId());
+        System.out.println(post.getContent());
+        long id = 1;
+        HashTag hashTag = new HashTag(id,"222", id,id);
+
+        postService.savePost(post, hashTag);
 
         return "success";
     }

@@ -104,8 +104,8 @@ CREATE TABLE friend_tag
 create table hash_tag (
     id BIGINT not null AUTO_INCREMENT,
     tag_content VARCHAR(255) NOT NULL,
-    post_id BIGINT NOT NULL, -- post table
-    comment_id BIGINT NOT NULL, -- comment table
+    post_id BIGINT, -- post table
+    comment_id BIGINT, -- comment table
     PRIMARY KEY(id),
     FOREIGN KEY(comment_id) REFERENCES comment(id)
 );
