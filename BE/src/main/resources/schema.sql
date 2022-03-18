@@ -8,8 +8,8 @@ CREATE TABLE users
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     profile_message VARCHAR(255) NOT NULL,
-    following_count BIGINT NOT NULL,
-    follower_count BIGINT NOT NULL,
+    following_count BIGINT NOT NULL DEFAULT 0,
+    follower_count BIGINT NOT NULL DEFAULT 0,
     PRIMARY KEY(id)
 );
 
