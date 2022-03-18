@@ -18,7 +18,6 @@ public class HashTagController {
     @GetMapping("/HashTag")
     public List<HashTagResponseDto> getAllHashTag() {
         List<HashTag> hashTagList = hashTagService.getAllHashTag();
-
         List<HashTagResponseDto> hashTagResponseDto  = new ArrayList<>();
         for(HashTag hashTag : hashTagList){
             hashTagResponseDto.add(new HashTagResponseDto(hashTag));

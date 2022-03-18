@@ -1,6 +1,7 @@
 package com.codepresso.team2app.controller.dto;
 
 import com.codepresso.team2app.vo.HashTag;
+import com.codepresso.team2app.vo.Post;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,11 @@ public class HashTagRequestDto {
     Long post_id;
     Long comment_id;
 
-    public HashTag getHashTag(){
-        return new HashTag(this.id, this.tag_content, this.post_id, this.comment_id);
+    public HashTag getPostHashTag(){
+        return new HashTag(this.id, this.tag_content, this.post_id, null);
+    }
+
+    public HashTag getCommentTag(){
+        return new HashTag(this.id, this.tag_content, null, this.comment_id);
     }
 }

@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.codepresso.team2app.mapper.PostMapper">
+<mapper namespace="com.codepresso.team2app.repository.PostRepository">
     <insert id="save">
+        insert into post(title, content, author)
+        values (#{post.title}, #{post.content}, #{post.author});
+    </insert>
+
+    <insert id="savePost">
         insert into post(title, content, author)
         values (#{post.title}, #{post.content}, #{post.author});
     </insert>

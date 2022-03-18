@@ -4,6 +4,7 @@ import com.codepresso.team2app.controller.dto.HashTagRequestDto;
 import com.codepresso.team2app.controller.dto.PostRequestDto;
 import com.codepresso.team2app.controller.dto.PostResponseDto;
 import com.codepresso.team2app.service.PostService;
+import com.codepresso.team2app.vo.FriendTag;
 import com.codepresso.team2app.vo.HashTag;
 import com.codepresso.team2app.vo.Post;
 import org.springframework.validation.annotation.Validated;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @RestController
 public class PostController {
@@ -25,13 +28,39 @@ public class PostController {
     public String createPost(@RequestBody @Validated PostRequestDto postRequestDto) {
         Post post = postRequestDto.getPost();
 
-        System.out.println(post.getId());
-        System.out.println(post.getContent());
+        HashTag hashTag;
+        String content = post.getContent();
+        String tag;
+        Pattern HashTagPtn = Pattern.compile("\\#(\\S)*");
+        Matcher HashTagMat = HashTagPtn.matcher(content);
+        List<String> HashTags = new ArrayList<String>();
         long id = 1;
-        HashTag hashTag = new HashTag(id,"222", id,id);
+        while(HashTagMat.find()){
+            HashTags.add(HashTagMat.group());
+//            System.out.println(mat.group());
+        }
+//        System.out.println(cnt);
+        for (int i = 0; i < HashTags.size(); i++) {
+            hashTag = new HashTag(id, HashTags.get(i).substring(1), post.getId(), null);
+            postService.saveHashTag(hashTag);
+        }
 
-        postService.savePost(post, hashTag);
+        FriendTag friendTag;
+        Pattern FriendTagPtn = Pattern.compile("\\@(\\S)*");
+        Matcher FriendTagMat = FriendTagPtn.matcher(content);
+        List<String> FriendTags = new ArrayList<String>();
 
+        while(FriendTagMat.find()){
+            FriendTags.add(FriendTagMat.group());
+//            System.out.println(mat.group());
+        }
+//        System.out.println(cnt);
+        for (int i = 0; i < FriendTags.size(); i++) {
+            friendTag = new FriendTag(id, FriendTags.get(i).substring(1), id, id);
+            postService.saveFriendTag(friendTag);
+        }
+
+        postService.saveOnlyPost(post);
         return "success";
     }
 
@@ -41,7 +70,9 @@ public class PostController {
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
         for(Post post : postList){
             postResponseDtos.add(new PostResponseDto(post));
+//            System.out.println(post.getId());
         }
+
         return postResponseDtos;
     }
 }

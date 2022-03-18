@@ -4,5 +4,7 @@
 <configuration>
     <mappers>
         <mapper resource="mybatis/mapper/post-mapper.xml"/>
+        <mapper resource="mybatis/mapper/hash-tag-mapper.xml"/>
+        <mapper resource="mybatis/mapper/friend-tag-mapper.xml"/>
     </mappers>
 </configuration>

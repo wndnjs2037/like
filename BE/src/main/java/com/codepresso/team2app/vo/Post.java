@@ -18,10 +18,17 @@ public class Post {
     Long count_comment;
     Long revogel_post_id;
 
-    public Post(Long id, Long author, String title, String content) {
+    public Post(Long author, String title, String content) {
         this.id = id;
         this.author = author;
         this.title = title;
         this.content = content;
+    }
+
+    public void postInfo(){
+        System.out.println("id " + this.id);
+        System.out.println(this.getId());
+        System.out.println("author " + this.author);
+        System.out.println(this.getAuthor());
     }
 }

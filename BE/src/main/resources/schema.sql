@@ -103,7 +103,8 @@ CREATE TABLE friend_tag
 -- 해시태그
 create table hash_tag (
     id BIGINT not null AUTO_INCREMENT,
-    tag_content VARCHAR(255) NOT NULL,
+--     tag_content VARCHAR(255) NOT NULL,
+    tag_content VARCHAR(255),
     post_id BIGINT, -- post table
     comment_id BIGINT, -- comment table
     PRIMARY KEY(id),
