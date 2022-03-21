@@ -10,7 +10,6 @@ import java.util.Date;
 public class Post {
     Long id;
     Long author;
-    String title;
     String content;
     Date createdAt;
     Long count_liked;
@@ -18,10 +17,9 @@ public class Post {
     Long count_comment;
     Long revogel_post_id;
 
-    public Post(Long author, String title, String content) {
+    public Post(Long id, Long author, String content) {
         this.id = id;
         this.author = author;
-        this.title = title;
         this.content = content;
     }
 

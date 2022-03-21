@@ -71,3 +71,23 @@ Version: 1.0
 	});
 
 })(jQuery); // End of use strict
+
+$("#create_post").click(function (){
+	console.log("create click");
+	var content = $("#floatingTextarea2").val();
+	var author = 2;
+
+	$.ajax({
+		method: "POST",
+		url :"/post",
+		data: JSON.stringify({
+			"content" :content,
+			"author": author
+		}),
+		contentType:"application/json"
+	})
+		.done(function (response) {
+			console.log("post creation success!");
+			window.location.reload();
+		});
+});

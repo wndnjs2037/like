@@ -9,11 +9,10 @@ import lombok.Setter;
 public class PostRequestDto {
     Long id;
     Long author;
-    String title;
     String content;
 
     public Post getPost(){
-        return new Post(this.author, this.title, this.content);
+        return new Post(this.id, this.author, this.content);
     }
     public void postInfo(){
         System.out.println("id : "+ this.id );

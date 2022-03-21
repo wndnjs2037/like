@@ -4,13 +4,13 @@
 
 <mapper namespace="com.codepresso.team2app.repository.PostRepository">
     <insert id="save">
-        insert into post(title, content, author)
-        values (#{post.title}, #{post.content}, #{post.author});
+        insert into post(content, author)
+        values (#{post.content}, #{post.author});
     </insert>
 
     <insert id="savePost">
-        insert into post(title, content, author)
-        values (#{post.title}, #{post.content}, #{post.author});
+        insert into post(content, author)
+        values (#{post.content}, #{post.author});
     </insert>
 
     <select id="findAllPost" resultType="com.codepresso.team2app.vo.Post">

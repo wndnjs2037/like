@@ -27,10 +27,12 @@ public class PostController {
     @PostMapping("/post")
     public String createPost(@RequestBody @Validated PostRequestDto postRequestDto) {
         Post post = postRequestDto.getPost();
+        postService.saveOnlyPost(post);
 
+        post.postInfo();
         HashTag hashTag;
         String content = post.getContent();
-        String tag;
+
         Pattern HashTagPtn = Pattern.compile("\\#(\\S)*");
         Matcher HashTagMat = HashTagPtn.matcher(content);
         List<String> HashTags = new ArrayList<String>();
@@ -60,7 +62,7 @@ public class PostController {
             postService.saveFriendTag(friendTag);
         }
 
-        postService.saveOnlyPost(post);
+        //post.getId()를 하면 null이 나오는 문제 해결 필요
         return "success";
     }
 

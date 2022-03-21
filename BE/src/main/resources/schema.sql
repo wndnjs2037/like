@@ -18,7 +18,6 @@ CREATE TABLE post
 (
     id BIGINT AUTO_INCREMENT,
     author BIGINT NOT NULL, -- user_id
-    title VARCHAR(255) NOT NULL,
     content VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     count_liked BIGINT NOT NULL DEFAULT 0,
