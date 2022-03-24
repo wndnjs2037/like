@@ -12,4 +12,6 @@ public interface PostRepository {
     Integer save(@Param("post") Post post, HashTag hashTag);
     Integer savePost(@Param("post") Post post);
     List<Post> findAllPost();
+    Integer updateLike(Post post);
+    List<Post> findOnePost(@Param("id") long id);
 }

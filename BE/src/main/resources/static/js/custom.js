@@ -91,3 +91,7 @@ $("#create_post").click(function (){
 			window.location.reload();
 		});
 });
+
+$("#follow").click(function () {
+	console.log("follow click");
+});

@@ -9,15 +9,15 @@ import lombok.Setter;
 @Setter
 public class HashTagRequestDto {
     Long id;
-    String tag_content;
-    Long post_id;
-    Long comment_id;
+    String tagContent;
+    Long postId;
+    Long commentId;
 
     public HashTag getPostHashTag(){
-        return new HashTag(this.id, this.tag_content, this.post_id, null);
+        return new HashTag(this.id, this.tagContent, this.postId, null);
     }
 
     public HashTag getCommentTag(){
-        return new HashTag(this.id, this.tag_content, null, this.comment_id);
+        return new HashTag(this.id, this.tagContent, null, this.commentId);
     }
 }
