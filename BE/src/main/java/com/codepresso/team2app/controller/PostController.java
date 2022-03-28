@@ -83,19 +83,35 @@ public class PostController {
         return list;
     }
 
-    @PutMapping("/post")
+    @PutMapping("/post/like") //id(post)를 파라미터로 주면 좋아요 1 증가
     public String updateLikeCount(@RequestParam("id") Long id) {
         List<Post> list = postService.getOnePost(id);
 
         Post post = list.get(0);
         post.postInfo();
+        post.LikeInfo();
 
         long like_id = 1;
         Like like;
         like = new Like(like_id, post.getId(), post.getAuthor());
         postService.countSave(like);
-
         postService.updateLike(post);
+
+        return "Success";
+    }
+
+    @PutMapping("/post/dislike")
+    public String downLikeCount(@RequestParam("id") Long id) {
+        List<Post> list = postService.getOnePost(id);
+        Post post = list.get(0);
+        post.postInfo();
+        post.LikeInfo();
+        long like_id = 1;
+        Like like;
+        like = new Like(like_id, post.getId(), post.getAuthor());
+        postService.countSave(like);
+        postService.downLike(post);
+
         return "Success";
     }
 }

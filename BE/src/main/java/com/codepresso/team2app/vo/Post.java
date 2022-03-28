@@ -43,4 +43,9 @@ public class Post {
         System.out.println("author " + this.author);
         System.out.println(this.getAuthor());
     }
+
+    public void LikeInfo(){
+        System.out.println("Like " + this.countLiked);
+        System.out.println(this.getCountLiked());
+    }
 }

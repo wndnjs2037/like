@@ -68,6 +68,7 @@ CREATE TABLE likes(
     id BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     user_id BIGINT NOT NULL,
     article_id BIGINT NOT NULL,
+    likeCheck BIGINT default 0,
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY(article_id) REFERENCES post(id) ON DELETE CASCADE
 );

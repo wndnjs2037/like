@@ -55,6 +55,11 @@ public class PostService {
         return result == 1;
     }
 
+    public boolean downLike(Post post){
+        Integer result = postRepository.downLike(post);
+        return result == 1;
+    }
+
     public List<Post> getOnePost(Long id){
         return postRepository.findOnePost(id);
     }

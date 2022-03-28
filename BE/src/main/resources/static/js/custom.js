@@ -95,3 +95,22 @@ $("#create_post").click(function (){
 $("#follow").click(function () {
 	console.log("follow click");
 });
+
+$("#liked").click(function () {
+	console.log("like click");
+	var author = $(this);
+	var count_liked = $(this);
+
+	$.ajax({
+	    method: "PUT",
+	    url:"/post/like?id=1",
+	    data: JSON.stringify({
+	        "count_liked" : count_liked
+	    }),
+	    contentType: "application/json"
+	})
+	    .done(function (response) {
+	        console.log("like crease success.");
+
+	    })
+});

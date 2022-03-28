@@ -1,11 +1,15 @@
 package com.codepresso.team2app.service;
 
+import com.codepresso.team2app.controller.dto.LikeDto;
 import com.codepresso.team2app.repository.LikeRepository;
 import com.codepresso.team2app.repository.PostRepository;
 import com.codepresso.team2app.vo.Like;
 import com.codepresso.team2app.vo.Post;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor //생성자 자동 생성
@@ -22,5 +26,7 @@ public class LikeService {
         Integer result = postRepository.updateLike(post);
         return result == 1;
     }
+
+
 
 }
